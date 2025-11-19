@@ -1,11 +1,14 @@
-@use "globals" as *;
+// src/styles/_layout.scss
 
-
-// 1. Configuración de Box-Sizing y Base
+// IMPORTANTE: Usamos el módulo GLOBAL (que reenvía variables y mixins) y le damos el alias 'v'.
+// Esto nos permite usar v.$variable y @include v.mixin.
+@use "variables" as v; 
+@use "mixins" as m;
+// ===================================
+// 1. Configuración Global (Body, HTML)
+// ===================================
 html {
-  // Establecer el tamaño base (para rems)
   font-size: 16px;
-  // Box-Sizing: CRÍTICO para un layout responsive limpio
   box-sizing: border-box;
 }
 
@@ -16,21 +19,117 @@ html {
 }
 
 body {
-  // Uso de variables de color y tipografía
-  font-family: $font-family-parrafo;
+  // Uso de variables con prefijo v.
+  font-family: v.$font-family-parrafo;
   line-height: 1.5;
-  background-color: $color-blanco; // Color de fondo principal (fuera del contenedor)
-  color: $color-morado; // Color principal del texto
+  background-color: v.$color-blanco;
+  color: v.$color-morado;
   margin: 0;
   padding: 0;
-  // Estilo pixel art para el fondo
-  background-image: url('../assets/fondo_portofolio.png');
 }
 
-// Estilos genéricos para las zonas principales (Punto 5 del Anexo III)
+// Estilos genéricos para las zonas principales
 header,
 main,
 footer {
-  // Aquí podríamos usar la variable $grid-columnas para espaciado si aplica
   padding: 1rem 0; 
 }
+
+
+// ===================================
+// 2. Contenedor Principal
+// ===================================
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  // Uso de prefijo v.
+  padding: 0 v.$grid-columnas; 
+  
+  // Uso del mixin con prefijo v.
+  @include m.media('tablet') {
+      max-width: 900px;
+  }
+  @include m.media('desktop') {
+      max-width: 1200px;
+  }
+}
+
+
+// ===================================
+// 3. Sistema de Grid (Flexbox)
+// ===================================
+.row {
+  display: flex;
+  flex-wrap: wrap; 
+  // Uso de prefijo v.
+  margin-left: v.$grid-columnas; 
+  margin-right: v.$grid-columnas;
+}
+
+.col {
+  // Uso de prefijo v.
+  padding-left: v.$grid-columnas;
+  padding-right: v.$grid-columnas;
+}
+
+// ===================================
+// 4. Clases de Columna (Mobile First - 6 Columnas)
+// ===================================
+
+// Por defecto, todo ocupa el ancho completo en móvil (6/6)
+.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-12 {
+  width: 100%; 
+}
+
+// Grid de 6 columnas para móvil (ejemplos de clases opcionales)
+.col-3-mobile { 
+    width: 50%; // 3/6 = 50%
+}
+.col-6-mobile {
+    width: 100%; // 6/6 = 100%
+}
+
+
+// ===================================
+// 5. Grid para Desktop (12 Columnas)
+// ===================================
+@include m.media('desktop') { // Uso del mixin con prefijo v.
+
+  .col-1 { width: 8.333%; }    // 1/12
+  .col-2 { width: 16.666%; }   // 2/12
+  .col-3 { width: 25%; }       // 3/12
+  .col-4 { width: 33.333%; }   // 4/12
+  .col-5 { width: 41.666%; }   // 5/12
+  .col-6 { width: 50%; }       // 6/12
+  .col-7 { width: 58.333%; }   // 7/12
+  .col-8 { width: 66.666%; }   // 8/12
+  .col-9 { width: 75%; }       // 9/12
+  .col-10 { width: 83.333%; }  // 10/12
+  .col-11 { width: 91.666%; }  // 11/12
+  .col-12 { width: 100%; }     // 12/12
+
+  // Anulamos las clases mobile si se definieron para móvil
+  .col-3-mobile, .col-6-mobile {
+    width: auto;
+  }
+}
+
+
+// ===================================
+// 6. Clases de Utilidad de Espaciado
+// ===================================
+// Todas usan el prefijo v. para $spacing-unit
+.mt-0 { margin-top: 0 !important; }
+.mt-1 { margin-top: v.$spacing-unit !important; }
+.mt-2 { margin-top: (v.$spacing-unit * 2) !important; }
+.mt-3 { margin-top: (v.$spacing-unit * 3) !important; }
+
+// Margin Bottom (mb)
+.mb-0 { margin-bottom: 0 !important; }
+.mb-1 { margin-bottom: v.$spacing-unit !important; }
+.mb-2 { margin-bottom: (v.$spacing-unit * 2) !important; }
+.mb-3 { margin-bottom: (v.$spacing-unit * 3) !important; }
+
+// Padding (p)
+.p-1 { padding: v.$spacing-unit !important; }
+.p-2 { padding: (v.$spacing-unit * 2) !important; }

@@ -1,1 +1,36 @@
 @use "globals" as *;
+
+
+// 1. Configuración de Box-Sizing y Base
+html {
+  // Establecer el tamaño base (para rems)
+  font-size: 16px;
+  // Box-Sizing: CRÍTICO para un layout responsive limpio
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  // Uso de variables de color y tipografía
+  font-family: $font-family-parrafo;
+  line-height: 1.5;
+  background-color: $color-blanco; // Color de fondo principal (fuera del contenedor)
+  color: $color-morado; // Color principal del texto
+  margin: 0;
+  padding: 0;
+  // Estilo pixel art para el fondo
+  background-image: url('../assets/fondo_portofolio.png');
+}
+
+// Estilos genéricos para las zonas principales (Punto 5 del Anexo III)
+header,
+main,
+footer {
+  // Aquí podríamos usar la variable $grid-columnas para espaciado si aplica
+  padding: 1rem 0; 
+}

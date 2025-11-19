@@ -19,3 +19,100 @@ $breakpoints: (
     @warn "El breakpoint '#{$size}' no existe en el mapa $breakpoints.";
   }
 }
+
+// ===================================
+// 2. Contenedor Principal
+// ===================================
+.container {
+  // Centrar el contenido y ancho máximo en desktop
+  max-width: 1200px;
+  margin: 0 auto;
+  // Padding lateral para evitar que el contenido toque los bordes
+  padding: 0 $grid-columnas; 
+  
+  // Adaptación responsive del ancho del contenedor
+  @include media('tablet') {
+      max-width: 900px;
+  }
+  @include media('desktop') {
+      max-width: 1200px;
+  }
+}
+
+
+// 3. Sistema de Grid (Flexbox)
+.row {
+  display: flex;
+  flex-wrap: wrap; 
+  // Margin negativo para compensar el padding del .col
+  margin-left: -$grid-columnas; 
+  margin-right: -$grid-columnas;
+}
+
+.col {
+  padding-left: $grid-columnas;
+  padding-right: $grid-columnas;
+}
+
+// ===================================
+// 4. Clases de Columna (Mobile First)
+// ===================================
+
+// El layout móvil es de 6 columnas. Usamos flex: 0 0 [ancho] para fijar.
+
+// Por defecto, todo ocupa el ancho completo en móvil (6/6)
+.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-12 {
+  width: 100%; 
+}
+
+// Grid de 6 columnas para móvil (ejemplos)
+.col-3-mobile { 
+    width: 50%; // 3/6 = 50%
+}
+.col-6-mobile {
+    width: 100%; // 6/6 = 100%
+}
+
+
+// 5. Grid para Desktop (12 Columnas)
+@include media('desktop') {
+
+  .col-1 { width: 8.333%; }    // 1/12
+  .col-2 { width: 16.666%; }   // 2/12
+  .col-3 { width: 25%; }       // 3/12
+  .col-4 { width: 33.333%; }   // 4/12
+  .col-5 { width: 41.666%; }   // 5/12
+  .col-6 { width: 50%; }       // 6/12
+  .col-7 { width: 58.333%; }   // 7/12
+  .col-8 { width: 66.666%; }   // 8/12
+  .col-9 { width: 75%; }       // 9/12
+  .col-10 { width: 83.333%; }  // 10/12
+  .col-11 { width: 91.666%; }  // 11/12
+  .col-12 { width: 100%; }     // 12/12
+
+  // Anulamos las clases mobile si se definieron para móvil
+  .col-3-mobile, .col-6-mobile {
+    width: auto;
+  }
+}
+
+
+// 6. Clases de Utilidad de Espaciado
+$spacing-unit: 1rem; // Usamos 1rem como unidad base para las clases
+
+// Margin Top (mt)
+.mt-0 { margin-top: 0 !important; }
+.mt-1 { margin-top: $spacing-unit !important; }
+.mt-2 { margin-top: ($spacing-unit * 2) !important; }
+.mt-3 { margin-top: ($spacing-unit * 3) !important; }
+
+// Margin Bottom (mb)
+.mb-0 { margin-bottom: 0 !important; }
+.mb-1 { margin-bottom: $spacing-unit !important; }
+.mb-2 { margin-bottom: ($spacing-unit * 2) !important; }
+.mb-3 { margin-bottom: ($spacing-unit * 3) !important; }
+
+// Padding (p)
+.p-1 { padding: $spacing-unit !important; }
+.p-2 { padding: ($spacing-unit * 2) !important; }
+// ... y así sucesivamente para todas las direcciones (pt, pb, pl, pr) si es necesario.

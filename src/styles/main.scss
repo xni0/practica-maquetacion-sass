@@ -1,0 +1,10 @@
+@use "globals" as *;
+@use "layout";
+@use "header";
+@use "footer";
+/* Estilo de prueba: */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+}

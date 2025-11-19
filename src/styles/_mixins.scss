@@ -1,0 +1,21 @@
+$breakpoints: (
+  'tablet': 768px,
+  'desktop': 1024px,
+  'wide': 1440px
+);
+
+// Mixin para gestionar Media Queries
+@mixin media($size) {
+  // Asegura que el tamaño solicitado existe en el mapa
+  @if map-has-key($breakpoints, $size) {
+    // Obtiene el valor del breakpoint
+    $breakpoint: map-get($breakpoints, $size);
+
+    // Genera la media query.
+    @media (min-width: $breakpoint) {
+      @content; // Permite inyectar estilos dentro del mixin
+    }
+  } @else {
+    @warn "El breakpoint '#{$size}' no existe en el mapa $breakpoints.";
+  }
+}

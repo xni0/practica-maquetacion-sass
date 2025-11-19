@@ -1,0 +1,80 @@
+
+// 1. COLORES
+$color-morado: #3a2175;
+$color-lavanda: #7b5af3;
+$color-rosa: #f59ac3;
+$color-amarillo: #fce870;
+$color-blanco: #fdf7ff;
+
+// Colores de estado
+$color-exito: #2ecc71;
+$color-error: #e74c3c;
+$color-advertencia: #f39c12;
+$color-informacion: #3498db;
+
+
+// 2. TIPOGRAFÍA (FAMILIA)
+$font-family-h1: "Pixelify Sans", sans-serif;
+$font-family-h2: "Jersey 10", sans-serif;
+$font-family-h3: "Jersey 10", sans-serif;
+$font-family-parrafo: "Pixelify Sans", sans-serif;
+$font-family-boton: "Pixelify Sans", sans-serif;
+
+
+// 3. TAMAÑOS DE FUENTE
+// Desktop
+$font-size-h1: 4.25rem;
+$font-size-h2: 2.625rem;
+$font-size-h3: 2rem;
+$font-size-parrafo: 1.375rem;
+$font-size-texto-boton: 2rem;
+// Móvil
+$font-size-h1-movil: 2.5rem;
+$font-size-h2-movil: 1.875rem;
+$font-size-h3-movil: 1.688rem;
+$font-size-titulo-card-movil: 1.438rem;
+$font-size-parrafo-form-movil: 1.25rem;
+$font-size-placeholder-movil: 0.75rem;
+
+
+// 4. ALTURA DE LÍNEA (Line Height)
+
+$line-height-h1: 4.5rem;
+$line-height-h2: 3rem;
+$line-height-h3: 1.875rem;
+$line-height-parrafo: 1.25rem;
+$line-height-h2-movil: 1.875rem;
+$line-height-parrafo-form-movil: 1.25rem;
+$line-height-h1-movil: 3.438rem;
+
+
+// 5. TAMAÑOS DE ICONOS
+// Desktop
+$icon-size-logo: 2.812rem;
+$icon-size-icon-home: 25.375rem;
+$icon-size-icon-pequenos: 2rem;
+$icon-size-icon-carrusel: 2.5rem;
+$icon-size-icon-grande: 3.125rem;
+$icon-size-iconos-redes: 1.875rem;
+// Móvil
+$icon-size-logo-movil: 1.625rem;
+$icon-size-icono-menu-hamburguesa: 1.875rem;
+$icon-size-icon-home-movil: 14.75rem;
+$icon-size-icon-pequenos-movil: 1.375rem;
+$icon-size-icon-carrusel-movil: 1.562rem;
+$icon-size-icon-redes-movil: 1.25rem;
+$icon-size-icon-sonrisa-movil: 2.5rem;
+$icon-size-icon-formulario-movil: 2.5rem;
+
+
+// 6. DIMENSIONES DE INPUTS Y BOTONES
+$input-size-input-form-1: 21.562rem;
+$input-size-input-form-1-movil: 7.812rem;
+
+$button-size-boton-pequeno: 13.938rem;
+$button-size-boton-grande: 21.562rem;
+$button-size-boton-movil: 7.812rem;
+
+
+// 7. GRID
+$grid-columnas: 0.75rem;

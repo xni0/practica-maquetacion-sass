@@ -4,9 +4,8 @@
 // Esto nos permite usar v.$variable y @include v.mixin.
 @use "variables" as v; 
 @use "mixins" as m;
-// ===================================
 // 1. Configuración Global (Body, HTML)
-// ===================================
+
 html {
   font-size: 16px;
   box-sizing: border-box;
@@ -36,9 +35,7 @@ footer {
 }
 
 
-// ===================================
 // 2. Contenedor Principal
-// ===================================
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -55,9 +52,7 @@ footer {
 }
 
 
-// ===================================
 // 3. Sistema de Grid (Flexbox)
-// ===================================
 .row {
   display: flex;
   flex-wrap: wrap; 
@@ -72,9 +67,7 @@ footer {
   padding-right: v.$grid-columnas;
 }
 
-// ===================================
 // 4. Clases de Columna (Mobile First - 6 Columnas)
-// ===================================
 
 // Por defecto, todo ocupa el ancho completo en móvil (6/6)
 .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-12 {
@@ -90,9 +83,7 @@ footer {
 }
 
 
-// ===================================
 // 5. Grid para Desktop (12 Columnas)
-// ===================================
 @include m.media('desktop') { // Uso del mixin con prefijo v.
 
   .col-1 { width: 8.333%; }    // 1/12
@@ -115,9 +106,8 @@ footer {
 }
 
 
-// ===================================
+
 // 6. Clases de Utilidad de Espaciado
-// ===================================
 // Todas usan el prefijo v. para $spacing-unit
 .mt-0 { margin-top: 0 !important; }
 .mt-1 { margin-top: v.$spacing-unit !important; }
@@ -133,3 +123,129 @@ footer {
 // Padding (p)
 .p-1 { padding: v.$spacing-unit !important; }
 .p-2 { padding: (v.$spacing-unit * 2) !important; }
+
+.hero-section {
+    background-color: v.$color-morado; 
+    padding: v.$spacing-unit * 3 0; 
+    border: 0.5rem solid v.$color-amarillo; 
+    
+    .hero-text-area {
+        color: v.$color-blanco; 
+        
+        .heading-h1 {
+            color: v.$color-rosa; 
+            font-family: v.$font-family-h1;
+            font-size: v.$font-size-h1; 
+
+            @include m.media('tablet') {
+                font-size: v.$font-size-h1-movil; 
+            }
+        }
+        
+        .parrafo {
+            font-size: v.$font-size-parrafo;
+        }
+
+        .inline-icon {
+            height: 1.5rem;
+        }
+
+        .primary-button {
+            background-color: v.$color-amarillo; 
+            color: v.$color-morado;
+            text-decoration: none;
+            padding: v.$spacing-unit 2rem;
+            display: inline-block;
+            font-family: v.$font-family-boton;
+            
+            &:hover {
+                background-color: lighten(v.$color-amarillo, 10%);
+            }
+        }
+    }
+    
+    .avatar-image {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+// Banda "Mis últimos proyectos"
+.proyectos-band {
+    background-color: v.$color-rosa; 
+    border: 0.25rem solid v.$color-amarillo;
+    text-align: center;
+    padding: v.$spacing-unit 0;
+    
+    .section-title {
+        color: v.$color-morado; 
+        font-family: v.$font-family-h2;
+        font-size: v.$font-size-h2-movil; 
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .inline-icon {
+            margin-left: 0.5rem;
+        }
+    }
+}
+
+// Carrusel de Proyectos
+#proyectos-carrusel {
+    .projects-carousel {
+        background-color: v.$color-morado;
+        padding: v.$spacing-unit * 2;
+    }
+
+    .carousel-nav-col {
+        @include m.media('desktop') {
+            display: block; 
+        }
+
+        .carousel-nav {
+            background-color: v.$color-lavanda;
+            color: v.$color-morado;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            height: 2.5rem;
+            width: 2.5rem;
+        }
+    }
+
+    .project-card {
+        background-color: v.$color-blanco;
+        border: 0.3rem solid v.$color-amarillo;
+        padding: v.$spacing-unit;
+        text-align: center;
+
+        .heading-h3 {
+            font-family: v.$font-family-h3;
+            font-size: v.$font-size-h3-movil;
+            color: v.$color-lavanda;
+        }
+
+        .project-image {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+    
+    .carousel-dots {
+        .dot {
+            height: 10px;
+            width: 10px;
+            background-color: v.$color-amarillo;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 4px;
+
+            &.active {
+                background-color: v.$color-lavanda;
+            }
+        }
+    }
+}

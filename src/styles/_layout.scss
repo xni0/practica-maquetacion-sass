@@ -170,21 +170,25 @@ footer {
             font-size: variables.$font-size-h1; 
             
             text-shadow: 
-    // Contorno de 3px en direcciones cardinales
-    4px 0 0 variables.$color-morado, /* Derecha */
-    -4px 0 0 variables.$color-morado, /* Izquierda */
-    0 4px 0 variables.$color-morado, /* Abajo */
-    0 -4px 0 variables.$color-morado, /* Arriba */
-    
-    // Contorno de 3px en diagonales
-    4px 4px 0 variables.$color-morado, /* Abajo-Derecha */
-    -4px -4px 0 variables.$color-morado, /* Arriba-Izquierda */
-    4px -4px 0 variables.$color-morado, /* Arriba-Derecha */
-    -4px 4px 0 variables.$color-morado; /* Abajo-Izquierda */
-            
+        // 1. Capas para el Contorno Morado Grueso
+        4px 0 0 variables.$color-morado,
+        -4px 0 0 variables.$color-morado,
+        0 4px 0 variables.$color-morado,
+        0 -4px 0 variables.$color-morado,
+        4px 4px 0 variables.$color-morado,
+        -4px -4px 0 variables.$color-morado,
+        4px -4px 0 variables.$color-morado,
+        -4px 4px 0 variables.$color-morado,
+        
+        // Sombra Gris Difuminada
+        4px 4px 6px rgba(0, 0, 0, 0.4);
+   
             .emoji-icon {
-                height: 0.65em; 
+                height: 0.7em; 
                 vertical-align: middle;
+                position: relative;
+                top: 10px;
+
             }
         }
 
@@ -242,6 +246,12 @@ footer {
             image-rendering: -webkit-optimize-contrast; 
             image-rendering: crisp-edges;              
             image-rendering: pixelated;
+            transition: transform 0.3s ease-out;
+
+            &:hover {
+            transform: scale(1.15); /* Amplía la imagen un 15% */
+            cursor: pointer;
+        }
         }
     }
 }

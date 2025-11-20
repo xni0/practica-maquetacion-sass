@@ -1,92 +1,112 @@
 @use "globals" as *;
 
 .main-header {
-    width: 100%;
-    // Fondo de la banda principal del header
-    background-color: $color-amarillo;
-    padding: 0; // Padding se maneja dentro del contenedor
-    
-    // Contenido dentro del contenedor (Logo + Nav)
-    .header-content {
-        // Franja de pixel art que se ve en el diseño
-        background-color: $color-morado; 
-        padding-top: 0.5rem; // Pequeño borde superior amarillo
-        padding-bottom: 0.5rem; // Pequeño borde inferior amarillo
+  width: 100%;
+  // Fondo de la banda principal del header
+  background-color: $color-amarillo;
+  padding: 0; // Padding se maneja dentro del contenedor
+
+  // Contenido dentro del contenedor (Logo + Nav)
+  .header-content {
+    // Franja de pixel art que se ve en el diseño
+    background-color: $color-lavanda;
+    border-top: 0.25rem solid $color-amarillo;
+    border-bottom: 0.25rem solid $color-amarillo;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+  }
+
+  .header-flex-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* Ocupa todo el ancho del container */
+  }
+
+  .logo-area {
+    display: flex;
+    align-items: center;
+
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: $color-morado;
+      font-family: $font-family-h1;
+      font-size: $font-size-h3-movil;
+
+      .logo-icon {
+        height: 1.9rem; /* Ajuste el tamaño visualmente al prototipo */
+        width: auto;
+        margin-right: 0.5rem;
+      }
+    }
+  }
+
+  // Navegación (Nav Area)
+  .nav-area {
+    display: flex;
+    align-items: center;
+
+    .menu-toggle {
+      // Visible solo en móvil. Ocultar en desktop.
+      display: block;
+      background: none;
+      border: none;
+      cursor: pointer;
+      height: $icon-size-icono-menu-hamburguesa;
+      padding: 0;
+      // Ocultar botón en desktop
+      @include media("desktop") {
+        display: none;
+      }
     }
 
-    .logo-area {
+    .nav-links {
+      // Ocultar la lista por defecto en móvil (sería desplegada por JS)
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      margin-left: auto;
+
+      // Mostrar la lista en desktop
+      @include media("desktop") {
         display: flex;
-        align-items: center;
+        gap: 1.5rem; // Espacio entre links
+      }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            color: $color-amarillo; // El texto del logo es amarillo
-            font-family: $font-family-h1; // Usamos la fuente de título para el logo
-            font-size: $font-size-h3-movil;
+      li a {
+        text-decoration: none;
+        color: $color-morado; // Links amarillos
+        font-family: $font-family-parrafo;
+        font-size: $font-size-parrafo;
+        padding: 0.25rem 0.5rem;
 
-            .logo-icon {
-                height: $icon-size-logo-movil; // Usar variable del icono de zapato
-                margin-right: 0.5rem;
-            }
+        &:hover {
+          color: $color-rosa;
+          .contact-icon-svg {
+            fill: $color-rosa;
+          }
         }
+      }
+    
+      .contact-icon-svg {
+        height: $icon-size-iconos-redes; /* Usar una variable adecuada para un icono de 16-24px */
+        width: auto;
+        margin-left: 0.25rem;
+        /* Asegurar alineación vertical */
+        vertical-align: middle;
+      }
     }
+  }
 
-    // Navegación (Nav Area)
-    .nav-area {
-        text-align: right;
-
-        .menu-toggle {
-            // Visible solo en móvil. Ocultar en desktop.
-            display: block; 
-            background: none;
-            border: none;
-            cursor: pointer;
-            height: $icon-size-icono-menu-hamburguesa;
-            padding: 0;
-            // Ocultar botón en desktop
-            @include media('desktop') {
-                display: none;
-            }
-        }
-
-        .nav-links {
-            // Ocultar la lista por defecto en móvil (sería desplegada por JS)
-            display: none; 
-            list-style: none;
-            padding: 0;
-            margin: 0;
-
-            // Mostrar la lista en desktop
-            @include media('desktop') {
-                display: flex;
-                justify-content: flex-end;
-                gap: 1.5rem; // Espacio entre links
-            }
-            
-            li a {
-                text-decoration: none;
-                color: $color-amarillo; // Links amarillos
-                font-family: $font-family-parrafo;
-                font-size: $font-size-parrafo;
-                padding: 0.25rem 0.5rem;
-                
-                &:hover, &.active {
-                    // Resaltar al pasar el ratón o si está activo
-                    background-color: $color-lavanda; 
-                }
-            }
-        }
+  // Mostrar el menú en desktop
+  @include media("desktop") {
+    .menu-toggle {
+      display: none;
     }
-
-    // Mostrar el menú en desktop
-    @include media('desktop') {
-        .menu-toggle {
-            display: none;
-        }
-        .nav-links {
-            display: flex;
-        }
+    .nav-links {
+      display: flex;
     }
+  }
 }

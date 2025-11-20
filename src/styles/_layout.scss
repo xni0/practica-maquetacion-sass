@@ -2,7 +2,7 @@
 
 // IMPORTANTE: Usamos el módulo GLOBAL (que reenvía variables y mixins) y le damos el alias 'v'.
 // Esto nos permite usar v.$variable y @include v.mixin.
-@use "variables" as v; 
+@use "variables" as *; 
 @use "mixins" as m;
 // 1. Configuración Global (Body, HTML)
 
@@ -19,12 +19,17 @@ html {
 
 body {
   // Uso de variables con prefijo v.
-  font-family: v.$font-family-parrafo;
+  font-family: $font-family-parrafo;
   line-height: 1.5;
-  background-color: v.$color-blanco;
-  color: v.$color-morado;
+  background-color: $color-blanco;
+  color: $color-morado;
   margin: 0;
   padding: 0;
+  background-image: url('../assets/fondo_portofolio.png'); // Ruta a la imagen de patrón
+  background-repeat: no-repeat; // ¡NO REPETIR LA IMAGEN!
+  background-size: cover;      // ESCALAR LA IMAGEN PARA CUBRIR TODA LA PANTALLA
+  background-position: center center; // CENTRAR LA IMAGEN
+  background-attachment: fixed;
 }
 
 // Estilos genéricos para las zonas principales
@@ -40,7 +45,7 @@ footer {
   max-width: 1200px;
   margin: 0 auto;
   // Uso de prefijo v.
-  padding: 0 v.$grid-columnas; 
+  padding: 0 $grid-columnas; 
   
   // Uso del mixin con prefijo v.
   @include m.media('tablet') {
@@ -57,14 +62,14 @@ footer {
   display: flex;
   flex-wrap: wrap; 
   // Uso de prefijo v.
-  margin-left: v.$grid-columnas; 
-  margin-right: v.$grid-columnas;
+  margin-left: -$grid-columnas; 
+  margin-right: -$grid-columnas;
 }
 
 .col {
   // Uso de prefijo v.
-  padding-left: v.$grid-columnas;
-  padding-right: v.$grid-columnas;
+  padding-left: $grid-columnas;
+  padding-right: $grid-columnas;
 }
 
 // 4. Clases de Columna (Mobile First - 6 Columnas)
@@ -110,40 +115,39 @@ footer {
 // 6. Clases de Utilidad de Espaciado
 // Todas usan el prefijo v. para $spacing-unit
 .mt-0 { margin-top: 0 !important; }
-.mt-1 { margin-top: v.$spacing-unit !important; }
-.mt-2 { margin-top: (v.$spacing-unit * 2) !important; }
-.mt-3 { margin-top: (v.$spacing-unit * 3) !important; }
+.mt-1 { margin-top: $spacing-unit !important; }
+.mt-2 { margin-top: ($spacing-unit * 2) !important; }
+.mt-3 { margin-top: ($spacing-unit * 3) !important; }
 
 // Margin Bottom (mb)
 .mb-0 { margin-bottom: 0 !important; }
-.mb-1 { margin-bottom: v.$spacing-unit !important; }
-.mb-2 { margin-bottom: (v.$spacing-unit * 2) !important; }
-.mb-3 { margin-bottom: (v.$spacing-unit * 3) !important; }
+.mb-1 { margin-bottom: $spacing-unit !important; }
+.mb-2 { margin-bottom: ($spacing-unit * 2) !important; }
+.mb-3 { margin-bottom: ($spacing-unit * 3) !important; }
 
 // Padding (p)
-.p-1 { padding: v.$spacing-unit !important; }
-.p-2 { padding: (v.$spacing-unit * 2) !important; }
-
+.p-1 { padding: $spacing-unit !important; }
+.p-2 { padding: ($spacing-unit * 2) !important; }
 .hero-section {
-    background-color: v.$color-morado; 
-    padding: v.$spacing-unit * 3 0; 
-    border: 0.5rem solid v.$color-amarillo; 
+    background-color: $color-morado; 
+    padding: $spacing-unit * 3 0; 
+    border: 0.5rem solid $color-amarillo; 
     
     .hero-text-area {
-        color: v.$color-blanco; 
+        color: $color-blanco; 
         
         .heading-h1 {
-            color: v.$color-rosa; 
-            font-family: v.$font-family-h1;
-            font-size: v.$font-size-h1; 
+            color: $color-rosa; 
+            font-family: $font-family-h1;
+            font-size: $font-size-h1; 
 
             @include m.media('tablet') {
-                font-size: v.$font-size-h1-movil; 
+                font-size: $font-size-h1-movil; 
             }
         }
         
         .parrafo {
-            font-size: v.$font-size-parrafo;
+            font-size: $font-size-parrafo;
         }
 
         .inline-icon {
@@ -151,15 +155,15 @@ footer {
         }
 
         .primary-button {
-            background-color: v.$color-amarillo; 
-            color: v.$color-morado;
+            background-color: $color-amarillo; 
+            color: $color-morado;
             text-decoration: none;
-            padding: v.$spacing-unit 2rem;
+            padding: $spacing-unit 2rem;
             display: inline-block;
-            font-family: v.$font-family-boton;
+            font-family: $font-family-boton;
             
             &:hover {
-                background-color: lighten(v.$color-amarillo, 10%);
+                background-color: lighten($color-amarillo, 10%);
             }
         }
     }
@@ -172,15 +176,15 @@ footer {
 
 // Banda "Mis últimos proyectos"
 .proyectos-band {
-    background-color: v.$color-rosa; 
-    border: 0.25rem solid v.$color-amarillo;
+    background-color: $color-rosa; 
+    border: 0.25rem solid $color-amarillo;
     text-align: center;
-    padding: v.$spacing-unit 0;
+    padding: $spacing-unit 0;
     
     .section-title {
-        color: v.$color-morado; 
-        font-family: v.$font-family-h2;
-        font-size: v.$font-size-h2-movil; 
+        color: $color-morado; 
+        font-family: $font-family-h2;
+        font-size: $font-size-h2-movil; 
         margin: 0;
         display: flex;
         align-items: center;
@@ -195,8 +199,8 @@ footer {
 // Carrusel de Proyectos
 #proyectos-carrusel {
     .projects-carousel {
-        background-color: v.$color-morado;
-        padding: v.$spacing-unit * 2;
+        background-color: $color-morado;
+        padding: $spacing-unit * 2;
     }
 
     .carousel-nav-col {
@@ -205,8 +209,8 @@ footer {
         }
 
         .carousel-nav {
-            background-color: v.$color-lavanda;
-            color: v.$color-morado;
+            background-color: $color-lavanda;
+            color: $color-morado;
             padding: 0.5rem;
             border: none;
             border-radius: 50%;
@@ -217,15 +221,15 @@ footer {
     }
 
     .project-card {
-        background-color: v.$color-blanco;
-        border: 0.3rem solid v.$color-amarillo;
-        padding: v.$spacing-unit;
+        background-color: $color-blanco;
+        border: 0.3rem solid $color-amarillo;
+        padding: $spacing-unit;
         text-align: center;
 
         .heading-h3 {
-            font-family: v.$font-family-h3;
-            font-size: v.$font-size-h3-movil;
-            color: v.$color-lavanda;
+            font-family: $font-family-h3;
+            font-size: $font-size-h3-movil;
+            color: $color-lavanda;
         }
 
         .project-image {
@@ -238,13 +242,13 @@ footer {
         .dot {
             height: 10px;
             width: 10px;
-            background-color: v.$color-amarillo;
+            background-color: $color-amarillo;
             border-radius: 50%;
             display: inline-block;
             margin: 0 4px;
 
             &.active {
-                background-color: v.$color-lavanda;
+                background-color: $color-lavanda;
             }
         }
     }

@@ -4,11 +4,13 @@
   width: 100%;
   // Fondo de la banda principal del header
   background-color: $color-amarillo;
-  padding: 0; // Padding se maneja dentro del contenedor
+  padding: 0; 
+  
+  // IMPORTANTE: Necesario para que el menú móvil se posicione relativo a todo el ancho del header
+  position: relative; 
 
   // Contenido dentro del contenedor (Logo + Nav)
   .header-content {
-    // Franja de pixel art que se ve en el diseño
     background-color: $color-lavanda;
     border-top: 0.25rem solid $color-amarillo;
     border-bottom: 0.25rem solid $color-amarillo;
@@ -20,7 +22,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%; /* Ocupa todo el ancho del container */
+    width: 100%; 
   }
 
   .logo-area {
@@ -36,7 +38,7 @@
       font-size: $font-size-h3-movil;
 
       .logo-icon {
-        height: 1.9rem; /* Ajuste el tamaño visualmente al prototipo */
+        height: 1.9rem; 
         width: auto;
         margin-right: 0.5rem;
       }
@@ -49,64 +51,97 @@
     align-items: center;
 
     .menu-toggle {
-      // Visible solo en móvil. Ocultar en desktop.
+      // Visible solo en móvil. 
       display: block;
       background: none;
       border: none;
       cursor: pointer;
       height: $icon-size-icono-menu-hamburguesa;
       padding: 0;
-      // Ocultar botón en desktop
-      @include media("desktop") {
+      
+      // Asegura que el SVG/Imagen dentro llene el botón
+      img, svg {
+          height: 100%;
+          width: auto;
+      }
+
+      // --- CAMBIO AQUÍ: Ocultar botón desde TABLET en adelante ---
+      @include media("tablet") {
         display: none;
       }
     }
 
     .nav-links {
-      // Ocultar la lista por defecto en móvil (sería desplegada por JS)
+      // --- ESTILOS MÓVIL (Menú Desplegable) ---
       list-style: none;
-      padding: 0;
       margin: 0;
-      margin-left: auto;
+      
+      // 1. Oculto por defecto en móvil
+      display: none; 
+      
+      // 2. Posicionamiento para caer debajo del header
+      position: absolute;
+      top: 100%; // Justo debajo
+      left: 0;
+      width: 100%; // Ocupa todo el ancho de la pantalla
+      
+      // 3. Estilos de caja del menú
+      background-color: $color-amarillo; 
+      border-bottom: 0.25rem solid $color-morado;
+      padding: 1.5rem 0;
+      flex-direction: column; // Elementos uno debajo de otro
+      align-items: center;
+      z-index: 100; // Por encima del resto de la web
 
-      // Mostrar la lista en desktop
-      @include media("desktop") {
+      // Clase que añadiremos con JS para mostrar el menú
+      &.open {
         display: flex;
-        gap: 1.5rem; // Espacio entre links
+      }
+      
+      // Espaciado vertical entre enlaces en móvil
+      li {
+          margin: 0.5rem 0;
+      }
+
+      // --- CAMBIO AQUÍ: ESTILOS TABLET Y DESKTOP (Restaurar barra horizontal) ---
+      // Ahora se activa desde "tablet" en lugar de "desktop"
+      @include media("tablet") {
+        display: flex !important; // Forzamos que siempre se vea en Tablet y PC
+        flex-direction: row;      // En fila
+        position: static;         // Quitamos posición absoluta
+        width: auto;
+        background-color: transparent;
+        border: none;
+        padding: 0;
+        gap: 1.5rem; 
+        margin-left: auto;
+        
+        li { margin: 0; }
       }
 
       li a {
         text-decoration: none;
-        color: $color-morado; // Links amarillos
+        color: $color-morado; 
         font-family: $font-family-parrafo;
         font-size: $font-size-parrafo;
         padding: 0.25rem 0.5rem;
 
         &:hover {
           color: $color-rosa;
+         
           .contact-icon-svg {
             fill: $color-rosa;
+            
           }
         }
       }
     
       .contact-icon-svg {
-        height: $icon-size-iconos-redes; /* Usar una variable adecuada para un icono de 16-24px */
+        height: $icon-size-iconos-redes; 
         width: auto;
         margin-left: 0.25rem;
-        /* Asegurar alineación vertical */
         vertical-align: middle;
       }
-    }
-  }
-
-  // Mostrar el menú en desktop
-  @include media("desktop") {
-    .menu-toggle {
-      display: none;
-    }
-    .nav-links {
-      display: flex;
     }
   }
 }

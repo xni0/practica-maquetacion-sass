@@ -54,3 +54,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateCarousel();
 });
+
+// main.js
+document.addEventListener('DOMContentLoaded', () => {
+    const menuBtn = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (menuBtn && navLinks) {
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+        });
+    }
+});

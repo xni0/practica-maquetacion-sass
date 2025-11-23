@@ -44,11 +44,11 @@ Si deseas clonar y ejecutar este proyecto en tu máquina local:
 
 Puedes ver el proyecto desplegado y funcionando en el siguiente enlace:
 
-👉 **[HAZ CLIC AQUÍ PARA VER LA PÁGINA](https://lucilenevl.github.io/practica-maquetacion-sass/)** 👈
+👉 **[HAZ CLIC AQUÍ PARA VER LA PÁGINA](https://xni0.github.io/practica-maquetacion-sass/index.html)** 👈
 
 ** 🎨 Para ver el Prototipo de la página web en Figma 
 
-👉 **[HAZ CLIC AQUÍ PARA VER LA PÁGINA](https://www.figma.com/design/RL22NjNouMHrxLQYwn110i/Portfolio?node-id=2-26&t=UfH1z1aruqObAZNi-1)** 👈
+👉 **[HAZ CLIC AQUÍ PARA VER EL PROTOTIPO DE LA PÁGINA](https://www.figma.com/design/RL22NjNouMHrxLQYwn110i/Portfolio?node-id=2-26&t=UfH1z1aruqObAZNi-1)** 👈
 
 ---
 *Práctica realizada para el módulo de Desarrollo de Interfaces Web.*

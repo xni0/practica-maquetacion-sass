@@ -27,7 +27,7 @@
     align-items: center; 
 }
 
-// TÍTULO (Columna Izquierda)
+// --- TÍTULO (Columna Izquierda) ---
 .contact-title-area {
     width: 55%; 
     text-align: left;
@@ -36,10 +36,19 @@
     .heading-h1 {
         color: variables.$color-rosa;
         font-family: variables.$font-family-h1;
-        font-size: variables.$font-size-h1 ; 
+        font-size: variables.$font-size-h1; 
         line-height: variables.$line-height-h1;
         margin: 0;
-        padding-left: 20px;
+        
+        // Ajuste para Tablet/Laptop
+        @media (min-width: 768px) and (max-width: 1200px) {
+            font-size: 2.7rem; 
+            line-height: 1.2; 
+        }
+        
+        .linea-texto {
+            display: inline; 
+        }
         
         text-shadow: 
             3px 0 0 variables.$color-morado, -3px 0 0 variables.$color-morado,
@@ -50,19 +59,25 @@
     }
 }
 
-//  SUBTÍTULO E ICONO (Columna Derecha) 
+// --- SUBTÍTULO E ICONO (Columna Derecha) ---
 .contact-subtitle-area {
     width: 45%; 
     display: flex; 
     justify-content: flex-end; 
     align-items: center;
     margin-bottom: variables.$spacing-unit;
-    
+    padding-right: 4rem;
 
     .contact-intro {
         color: variables.$color-blanco;
         font-family: variables.$font-family-h3; 
-        font-size: variables.$font-size-h3 * 1.2; 
+        font-size: variables.$font-size-h3; 
+        
+        // Ajuste para Tablet: Texto pequeño y más espacio a la derecha para el icono
+        @media (min-width: 768px) and (max-width: 1200px) {
+            font-size: 1.7rem; 
+            padding-right: 5rem; // Aumentado para separar más el icono del texto
+        }
         
         text-align: left; 
         margin: 0;
@@ -70,7 +85,7 @@
         line-height: 1.2; 
         
         position: relative; 
-        padding-right: 1.35rem;
+        padding-right: 3.5rem; 
         
         text-shadow: 
             3px 0 0 variables.$color-morado, -3px 0 0 variables.$color-morado,
@@ -88,17 +103,24 @@
             color: variables.$color-amarillo;
         }
 
+        // Icono en Desktop y Tablet
         .inline-icon-pc {
             position: absolute; 
             right: 3rem; 
             bottom: 0.8rem; 
             height: variables.$icon-size-icon-carrusel; 
             image-rendering: pixelated;
+            
+            // Ajuste Tablet: Icono más a la derecha para separarse del texto
+            @media (min-width: 768px) and (max-width: 1200px) {
+                right: 0; // Lo pegamos más al borde derecho del contenedor
+                height: 3.2rem; 
+            }
         }
     }
 }
 
-//  FORMULARIO PIXEL ART 
+// --- FORMULARIO PIXEL ART ---
 .contact-form-area {
     width: 100%;
     margin-top: variables.$spacing-unit * 4;
@@ -112,19 +134,16 @@
     .form-group {
         display: flex;
         align-items: center; 
-        
-        // Centrado del grupo
         justify-content: center; 
-        gap: 1rem; 
-        
+        gap: 5rem; 
         position: relative;
 
         label {
             color: variables.$color-blanco;
             font-family: variables.$font-family-parrafo;
-            font-size: 1.4rem;
+            font-size: 1.4rem; 
+            font-weight: bold;
             text-align: right;
-            
             width: 35%; 
             white-space: nowrap; 
             text-shadow: 2px 2px 0 variables.$color-morado;
@@ -136,19 +155,15 @@
         }
 
         input, textarea {
-            width: 50%; 
-            
-            // Tus colores solicitados
+            width: 40%; 
             background-color: rgba(variables.$color-rosa, 0.5); 
-            border: 3px solid transparent; 
-            border-bottom: 3px solid variables.$color-morado; 
             border: 3px solid variables.$color-morado; 
-            
+            outline: none;
+            box-shadow: none;
             color: variables.$color-morado; 
             font-family: variables.$font-family-parrafo;
             font-size: variables.$font-size-parrafo; 
             padding: 0.5rem variables.$spacing-unit;
-            outline: none;
 
             &::placeholder {
                 color: variables.$color-rosa;
@@ -158,7 +173,7 @@
 
             &:focus {
                 background-color: rgba(165, 118, 184, 0.8);
-                border: 3px solid variables.$color-rosa; 
+                border-color: variables.$color-rosa; 
             }
         }
 
@@ -168,47 +183,44 @@
         }
     }
 
-    // FORM ACTIONS (AQUI ESTÁ EL CAMBIO VERTICAL) 
+    // --- FORM ACTIONS ---
     .form-actions {
         display: flex;
-        flex-direction: column; // Cambio a columna: Newsletter arriba, Botón abajo
+        flex-direction: column; 
         align-items: center;
         gap: 1.5rem; 
         margin-top: variables.$spacing-unit;
         width: 100%;
         
-        // Fila del Newsletter (Replica la estructura de los inputs de arriba)
         .checkbox-group {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 100%; // Ocupa todo el ancho
-            gap: 1rem; // Mismo gap que los inputs
+            width: 100%; 
+            gap: 1rem; 
             
             .checkbox-label {
-                width: 35%; // Mismo ancho que label
-                text-align: left; // Alineado a la izquierda como pediste en el último código
-                padding-right: 0; // Ajuste fino
-                
+                width: 35%; 
+                text-align: left; 
+                padding-right: 0; 
                 color: variables.$color-blanco;
                 font-family: variables.$font-family-parrafo;
-                text-shadow: 2px 2px 0 #3a2175; // Mantenemos el color hardcodeado que pasaste
+                text-shadow: 2px 2px 0 #3a2175; 
                 font-size: 1.4rem;
                 line-height: 1.2;
                 white-space: normal;
 
-                // --- NUEVO: SOPORTE PARA TEXTO AMARILLO Y SALTOS DE LÍNEA ---
                 .linea-texto {
-                    display: block; // Fuerza el salto de línea en cada span
+                    display: block; 
                     width: 100%;
                 }
                 .texto-destacado {
-                    color: variables.$color-amarillo; // Pinta de amarillo "mi newsletter"
+                    color: variables.$color-amarillo; 
                 }
             }
 
             .custom-checkbox-wrapper {
-                width: 50%; // Mismo ancho que input
+                width: 29%; 
                 display: flex;
                 align-items: center;
                 gap: 0.5rem;
@@ -221,7 +233,7 @@
                     height: 1.5rem;
                     background-color: rgba(245, 154, 195, 0.5);
                     border: 2px solid variables.$color-morado;
-                
+                    box-shadow: inset 2px 2px 0 rgba(0,0,0,0.2);
                     cursor: pointer;
                     display: grid;
                     place-content: center;
@@ -246,21 +258,15 @@
                     color: variables.$color-blanco;
                     font-weight: bold;
                     cursor: pointer;
-                    font-size: 1.3rem;
-                    text-shadow: 2px 2px 0 #3a2175;
+                    font-family: variables.$font-family-parrafo;
                 }
             }
         }
 
-        
         .btn-submit {
-            width: 50%; // Mismo ancho que los inputs
-            
-            // Truco para alinear el botón debajo de los inputs (y no centrado en la página)
-            // Empujamos el botón a la derecha sumando el ancho del label (35%) + el gap (1rem)
-            margin-left: calc(35% + 1rem);
+            width: 40%; 
+            margin-left: calc(45% + 1rem);
             margin-right: 0;
-            
             background-color: variables.$color-amarillo;
             color: variables.$color-morado;
             font-family: variables.$font-family-boton; 
@@ -268,7 +274,7 @@
             text-transform: uppercase;
             font-weight: 700;
             padding: 0.5rem 0; 
-            border: 3px solid variables.$color-morado; 
+            border: 4px solid variables.$color-morado; 
             cursor: pointer;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transition: all 0.1s;
@@ -281,85 +287,130 @@
             
             &:active {
                 transform: translate(2px, 2px);
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                box-shadow: 0px 0px 0 rgba(0,0,0,0.2);
             }
         }
     }
 }
 
-// RESPONSIVE (Móvil) 
-@media (max-width: 768px) {
+// --- RESPONSIVE (Móvil) ---
+@media (max-width: 767px) {
     .contact-wrapper {
         padding: 1.5rem;
     }
     
-    .contact-title-area, .contact-subtitle-area {
+    .contact-title-area {
         width: 100%;
-        text-align: center;
+        text-align: left; 
+        padding-left: 1.5rem; 
+        padding-right: 0;
+        margin-bottom: 1.5rem;
+    }
+    
+    .contact-title-area .heading-h1 { 
+        font-size: 3.4rem; 
+        line-height: 1; 
+        padding-left: 0;
         
-        .heading-h1 { 
-            font-size: variables.$font-size-h1-movil; 
-            line-height: variables.$line-height-h1-movil;
+        .linea-texto {
+            display: block; 
         }
-        .contact-intro { 
-            max-width: 100%; 
-            font-size: variables.$font-size-h3-movil; 
-            width: 100%; 
-            text-align: center;
-            padding-right: 0; 
-            
-            .inline-icon-pc {
-                position: static; 
-                display: inline-block;
-                margin-left: 0.5rem;
-                vertical-align: middle;
-            }
+        
+        text-shadow: 
+            4px 0 0 variables.$color-morado, -4px 0 0 variables.$color-morado,
+            0 4px 0 variables.$color-morado, 0 -4px 0 variables.$color-morado,
+            4px 4px 0 variables.$color-morado, -4px -4px 0 variables.$color-morado,
+            4px -4px 0 variables.$color-morado, -4px 4px 0 variables.$color-morado;
+    }
+    
+    .contact-subtitle-area {
+        width: 100%;
+        text-align: center; 
+        padding-left: 0; 
+        padding-right: 0;
+    }
+    
+    .contact-subtitle-area .contact-intro { 
+        max-width: 100%; 
+        width: fit-content; 
+        margin: 0 auto;
+        text-align: center; 
+        padding-right: 0; 
+        
+        .linea-texto {
+            display: inline; // Mantenemos inline general
+        }
+
+        // CAMBIO: Salto de línea forzado después de "formulario y"
+        // "formulario y" es el segundo span con clase .linea-texto en tu HTML
+        .linea-texto:nth-child(2)::after {
+            content: "\A";
+            white-space: pre;
+        }
+        
+        .inline-icon-pc {
+            position: absolute; 
+            top: 0; 
+            right: -2.7rem; 
+            bottom: auto; 
+            display: inline-block;
+            margin-left: 0;
+            height: 2.5rem;
         }
     }
 
     .pixel-form {
         .form-group {
-            flex-direction: column; 
-            align-items: flex-start;
+            flex-direction: row; 
+            align-items: center;
+            justify-content: space-between; 
             gap: 0.5rem; 
+            width: 100%; 
             
             label {
-                width: 100%;
-                text-align: left;
-                margin-bottom: 0.2rem;
-                font-size: variables.$font-size-parrafo-form-movil;
+                width: 38%; 
+                text-align: right; 
+                font-size: 1rem; 
                 white-space: normal; 
+                line-height: 1.1;
+                padding-left: 0; 
             }
+            
             input, textarea {
-                width: 100%;
+                width: 60%; 
+                padding: 0.4rem;
             }
         }
 
         .form-actions {
-            gap: 1.5rem;
+            gap: 1rem;
+            width: 100%; 
 
             .checkbox-group {
-                flex-direction: column;
-                align-items: flex-start; 
+                flex-direction: row; 
+                align-items: center;
                 width: 100%;
                 gap: 0.5rem;
+                justify-content: space-between;
                 
                 .checkbox-label { 
-                    width: 100%; 
+                    width: 38%; 
                     text-align: left; 
                     padding-right: 0;
-                    margin-bottom: 0.5rem;
+                    font-size: 1rem;
                 }
-                .custom-checkbox-wrapper { width: 100%; }
+                
+                .custom-checkbox-wrapper { 
+                    width: 60%; 
+                    justify-content: flex-start; 
+                }
             }
             
             .btn-submit {
-                width: 100%; 
-                height: variables.$button-size-boton-movil;
-                margin-left: 0; 
-                display: flex; 
-                align-items: center; 
-                justify-content: center;
+                width: 60%; 
+                margin-left: auto; 
+                margin-right: 0;
+                font-size: 1.2rem;
             }
         }
     }

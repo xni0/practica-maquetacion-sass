@@ -265,10 +265,9 @@ header, main, footer {
   
   left: 50%;
   transform: translateX(-50%);
-  
   width: 95%; 
   
-  @include mixins.media("desktop") { width: 1100px; }
+  @include mixins.media("desktop") { width: 86%; }
 
   box-shadow: 0 6px 5px rgba(0, 0, 0, 0.4);
 

@@ -1,18 +1,14 @@
-// src/styles/_layout.scss
-
-// Importaciones SIN alias, usando el nombre del archivo como módulo
 @use "variables";
 @use "mixins";
 
-// Configuración Global (Body, HTML)
+// Configuración Global
 html {
   font-size: 16px;
   box-sizing: border-box;
+  overflow-x: hidden; 
 }
 
-*,
-*::before,
-*::after {
+*, *::before, *::after {
   box-sizing: inherit;
 }
 
@@ -23,8 +19,6 @@ body {
   color: variables.$color-morado;
   margin: 0;
   padding: 0;
-
-  // Fondo de la imagen completa
   background-image: url("../assets/fondo_portofolio.png");
   background-repeat: no-repeat;
   background-size: cover;
@@ -32,28 +26,19 @@ body {
   background-attachment: fixed;
 }
 
-// Estilos genéricos para las zonas principales
-header,
-main,
-footer {
+header, main, footer {
   padding: 1rem 0;
 }
 
-// LAYOUT y GRID (El contenedor y las columnas)
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 variables.$grid-columnas;
 
-  @include mixins.media("tablet") {
-    max-width: 900px;
-  }
-  @include mixins.media("desktop") {
-    max-width: 1200px;
-  }
+  @include mixins.media("tablet") { max-width: 900px; }
+  @include mixins.media("desktop") { max-width: 1200px; }
 }
 
-// Sistema de Grid (Flexbox)
 .row {
   display: flex;
   flex-wrap: wrap;
@@ -66,112 +51,37 @@ footer {
   padding-right: variables.$grid-columnas;
 }
 
-// 4. Clases de Columna (Mobile First - 6 Columnas)
+.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-12 { width: 100%; }
 
-// Por defecto, todo ocupa el ancho completo en móvil (6/6)
-.col-1,
-.col-2,
-.col-3,
-.col-4,
-.col-5,
-.col-6,
-.col-12 {
-  width: 100%;
-}
-
-// Grid de 6 columnas para móvil (ejemplos de clases opcionales)
-.col-3-mobile {
-  width: 50%;
-}
-.col-6-mobile {
-  width: 100%;
-}
-
-// 5. Grid para Desktop (12 Columnas)
 @include mixins.media("desktop") {
-  .col-1 {
-    width: 8.333%;
-  }
-  .col-2 {
-    width: 16.666%;
-  }
-  .col-3 {
-    width: 25%;
-  }
-  .col-4 {
-    width: 33.333%;
-  }
-  .col-5 {
-    width: 41.666%;
-  }
-  .col-6 {
-    width: 50%;
-  }
-  .col-7 {
-    width: 58.333%;
-  }
-  .col-8 {
-    width: 66.666%;
-  }
-  .col-9 {
-    width: 75%;
-  }
-  .col-10 {
-    width: 83.333%;
-  }
-  .col-11 {
-    width: 91.666%;
-  }
-  .col-12 {
-    width: 100%;
-  }
-
-  .col-3-mobile,
-  .col-6-mobile {
-    width: auto;
-  }
+  .col-6 { width: 50%; }
 }
 
-// 6. Clases de Utilidad de Espaciado
-.mt-0 {
-  margin-top: 0 !important;
-}
-.mt-1 {
-  margin-top: variables.$spacing-unit !important;
-}
-.mt-2 {
-  margin-top: (variables.$spacing-unit * 2) !important;
-}
+.mt-0 { margin-top: 0 !important; }
+.mt-1 { margin-top: variables.$spacing-unit !important; }
+.mt-2 { margin-top: (variables.$spacing-unit * 2) !important; }
+.mb-0 { margin-bottom: 0 !important; }
+.mb-1 { margin-bottom: variables.$spacing-unit !important; }
+.mb-3 { margin-bottom: (variables.$spacing-unit * 3) !important; }
+.p-1 { padding: variables.$spacing-unit !important; }
+.p-2 { padding: (variables.$spacing-unit * 2) !important; }
 
-.mb-0 {
-  margin-bottom: 0 !important;
-}
-.mb-1 {
-  margin-bottom: variables.$spacing-unit !important;
-}
-.mb-3 {
-  margin-bottom: (variables.$spacing-unit * 3) !important;
-}
 
-.p-1 {
-  padding: variables.$spacing-unit !important;
-}
-.p-2 {
-  padding: (variables.$spacing-unit * 2) !important;
-}
-
-// MAQUETACIÓN DE LA PÁGINA DE INICIO (LANDING)
+// --- MAQUETACIÓN HOME ---
 
 .main-wrapper {
-  // FONDO ÚNICO Y TRANSPARENCIA
   background-color: rgba(123, 90, 243, 0.5);
-  border-left: 0.2rem solid variables.$color-amarillo; // Mantenemos el izquierdo
-  border-right: 0.2rem solid variables.$color-amarillo; // Mantenemos el derecho
-  border-top: none; // Lo definiremos en .top-section
+  border-left: 0.2rem solid variables.$color-amarillo;
+  border-right: 0.2rem solid variables.$color-amarillo;
+  border-top: none;
   border-bottom: none;
 
   max-width: 1000px;
+  
+  // SIEMPRE 90% para asegurar márgenes laterales
+  width: 90%; 
   margin: 0 auto;
+  
   position: relative;
   z-index: 10;
 }
@@ -185,84 +95,149 @@ footer {
   border-bottom: 0.2rem solid variables.$color-amarillo;
 }
 
-// SECCIÓN HERO: Bienvenida (Contenido Superior)
+
+// -------------------------------------------------------
+// SECCIÓN HERO (BIENVENIDA)
+// -------------------------------------------------------
 #hero-area {
-  padding: variables.$spacing-unit * 0 variables.$spacing-unit * 4.5;
+  // Padding original
+  padding: variables.$spacing-unit * 0 variables.$spacing-unit * 4.5; 
+  
+  @media (max-width: 768px) {
+      padding: 1rem 0.5rem; 
+  }
+
   display: flex;
-  flex-wrap: wrap; 
+  flex-wrap: nowrap; 
   align-items: center; 
   justify-content: space-between; 
 
+  // --- TEXTO ---
   .hero-text-area {
     color: variables.$color-blanco;
-    
     display: flex;
     flex-direction: column; 
     align-items: flex-start;
     justify-content: center; 
+    
+    width: 55%; 
+    
+    // Padding izquierdo en móvil (solicitado)
+    padding-left: 1.5rem;
+    
+    @include mixins.media("desktop") { 
+        width: 50%; 
+        padding-left: 30px; 
+    }
 
     .heading-h1 {
       color: variables.$color-rosa;
       font-family: variables.$font-family-h1;
-      font-size: variables.$font-size-h1;
+      
+      // CAMBIO: Fuente más grande en móvil (antes 1.8rem)
+      font-size: 2.5rem; 
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+      
+      @include mixins.media("tablet") { 
+          font-size: variables.$font-size-h1; 
+          margin-bottom: 0;
+      }
 
+      // Contorno fino (2px) para móvil
       text-shadow: 
-       
-        4px 0 0 variables.$color-morado, -4px 0 0 variables.$color-morado,
-        0 4px 0 variables.$color-morado, 0 -4px 0 variables.$color-morado,
-        4px 4px 0 variables.$color-morado, -4px -4px 0 variables.$color-morado,
-        4px -4px 0 variables.$color-morado, -4px 4px 0 variables.$color-morado,
-
-        4px 4px 6px rgba(0, 0, 0, 0.4);
+        2px 0 0 variables.$color-morado, -2px 0 0 variables.$color-morado,
+        0 2px 0 variables.$color-morado, 0 -2px 0 variables.$color-morado,
+        2px 2px 0 variables.$color-morado, -2px -2px 0 variables.$color-morado,
+        2px -2px 0 variables.$color-morado, -2px 2px 0 variables.$color-morado,
+        3px 3px 4px rgba(0, 0, 0, 0.4);
+      
+      @include mixins.media("tablet") {
+        text-shadow: 
+          4px 0 0 variables.$color-morado, -4px 0 0 variables.$color-morado,
+          0 4px 0 variables.$color-morado, 0 -4px 0 variables.$color-morado,
+          4px 4px 0 variables.$color-morado, -4px -4px 0 variables.$color-morado,
+          4px -4px 0 variables.$color-morado, -4px 4px 0 variables.$color-morado,
+          4px 4px 6px rgba(0, 0, 0, 0.4);
+      }
 
       .emoji-icon {
         height: 0.7em;
         vertical-align: middle;
         position: relative;
-        top: 10px;
+        top: -0.1em; 
       }
     }
 
     p {
-      font-size: variables.$font-size-parrafo * 1.5;
-      margin-bottom: variables.$spacing-unit * 2;
-      text-shadow: 
-        3px 0 0 variables.$color-morado, -3px 0 0 variables.$color-morado,
-        0 3px 0 variables.$color-morado, 0 -3px 0 variables.$color-morado,
-        3px 3px 0 variables.$color-morado, -3px -3px 0 variables.$color-morado,
-        3px -3px 0 variables.$color-morado, -3px 3px 0 variables.$color-morado,
-        3px 3px 5px rgba(0, 0, 0, 0.5);
+      font-size: 0.85rem; 
+      margin-bottom: 1rem;
+      line-height: 1.2;
+      padding-left: 0.2rem; 
+      
+      @include mixins.media("tablet") {
+          font-size: variables.$font-size-parrafo * 1.5;
+          margin-bottom: variables.$spacing-unit * 2;
+          padding-left: 1rem;
+      }
+
+          text-shadow: 1px 0 0 #3a2175, -1px 0 0 #3a2175, 0 1px 0 #3a2175, 0 -1px 0 #3a2175, 1px 1px 0 #3a2175, -1px -1px 0 #3a2175, 1px -1px 0 #3a2175, -1px 1px 0 #3a2175, 1px 1px 1px rgba(0, 0, 0, 0.5);
+        
+      @include mixins.media("tablet") {
+        text-shadow: 3px 0 0 variables.$color-morado, -3px 0 0 variables.$color-morado, 0 3px 0 variables.$color-morado, 0 -3px 0 variables.$color-morado, 3px 3px 0 variables.$color-morado, -3px -3px 0 variables.$color-morado, 3px -3px 0 variables.$color-morado, -3px 3px 0 variables.$color-morado, 3px 3px 5px rgba(0, 0, 0, 0.5);
+      }
+        
+      .break-point {
+          display: block;
+          @include mixins.media("tablet") { display: inline; }
+      }
     }
 
     .btn {
       background-color: variables.$color-amarillo;
       color: variables.$color-morado;
-      padding: variables.$spacing-unit * 0.5 variables.$spacing-unit * 1.5;
-      border: none;
+      padding: 0.3rem 0.8rem; 
+      font-size: 0.8rem;
+      border: 2px solid variables.$color-morado; 
+      
+      @include mixins.media("tablet") {
+          padding: variables.$spacing-unit * 0.5 variables.$spacing-unit * 1.5;
+          font-size: variables.$font-size-parrafo * 1.2;
+          border: 3px solid variables.$color-morado;
+          margin-left: 1rem;
+      }
+
       font-family: variables.$font-family-parrafo;
       font-weight: bold;
-      font-size: variables.$font-size-parrafo * 1.2;
       text-decoration: none;
       display: inline-block;
       transition: background-color 0.3s ease;
       cursor: pointer;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
-      border: 3px solid variables.$color-morado;
+      
       &:hover {
         background-color: variables.$color-rosa;
       }
     }
   }
 
+  // --- IMAGEN ---
   .hero-image-area {
     text-align: right;
+    width: 45%; 
+    
+    @include mixins.media("desktop") { width: 50%; }
+
     .hero-illustration {
-      width: 400px;
-      max-width: 100%; 
+      width: 100%;
+      max-width: 160px; 
       height: auto;
       display: block; 
       margin-left: auto; 
+      
+      @include mixins.media("tablet") {
+          max-width: 400px; 
+      }
 
       image-rendering: -webkit-optimize-contrast;
       image-rendering: crisp-edges;
@@ -277,16 +252,23 @@ footer {
   }
 }
 
-// SECCIÓN BANDA ROSA SUPERPUESTA (Mis Últimos Proyectos)
+
+
+// SECCIÓN BANDA ROSA SUPERPUESTA
+
 .proyectos-band {
   position: relative;
   z-index: 20;
 
   background-color: variables.$color-rosa;
-  border: 0.23rem solid variables.$color-blanco;
+  border: 0.23rem solid variables.$color-blanco; 
+  
   left: 50%;
   transform: translateX(-50%);
-  width: 82vw;
+  
+  width: 95%; 
+  
+  @include mixins.media("desktop") { width: 1100px; }
 
   box-shadow: 0 6px 5px rgba(0, 0, 0, 0.4);
 
@@ -294,32 +276,27 @@ footer {
   margin-bottom: 0;
 
   text-align: center;
-  padding: variables.$spacing-unit * 0 0;
+  padding: 0; 
 
- 
   h2.section-title {
-
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4); 
-
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+    margin: 0;
   }
 
   img.inline-icon {
     vertical-align: middle; 
     margin: 0 0.3rem; 
+    width: 18px;
+    @include mixins.media("tablet") { width: 24px; }
   }
 }
-.proyectos-band img {
-  width: 24px;
-}
 
-// -------------------------------------------------------------
-// SECCIÓN CARRUSEL DE PROYECTOS (Compacto y Centrado)
-// -------------------------------------------------------------
+
+// SECCIÓN CARRUSEL
+
 #proyectos-carrusel {
   padding-top: variables.$spacing-unit * 3;
   padding-bottom: variables.$spacing-unit * 2;
-
-  // Centrar todo
   display: flex;
   justify-content: center;
 
@@ -327,11 +304,12 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1rem; // Espacio entre flechas y tarjetas
+    gap: 0.5rem; 
     width: 100%;
+    
+    @include mixins.media("tablet") { gap: 1rem; }
   }
 
-  // Flechas
   .carousel-nav {
     background: transparent;
     border: none !important;
@@ -341,36 +319,41 @@ footer {
     flex-shrink: 0; 
 
     img {
-      height: 3rem;
-      width: 3rem;
+      height: 2rem; 
+      width: 2rem;
       display: block;
+      
+      @include mixins.media("tablet") {
+          height: 3rem;
+          width: 3rem;
+      }
     }
 
-    &:disabled {
-      opacity: 0.5;
-      cursor: default;
-    }
+    &:disabled { opacity: 0.5; cursor: default; }
   }
 
-  // Ventana Visible (Muestra solo 2 tarjetas)
   .project-cards-view {
     width: 100%;
     max-width: 800px; 
     overflow: hidden; 
   }
 
-  // Track (Contiene las 4 tarjetas)
   .carousel-track {
     display: flex;
     transition: transform 0.5s ease-in-out;
     width: 100%;
   }
 
-  // Tarjeta Individual (Slide)
+  // TARJETA INDIVIDUAL 
   .project-slide {
-    flex: 0 0 50%;
-    max-width: 50%;
+    flex: 0 0 100%;
+    max-width: 100%;
     padding: 0 0.5rem;
+
+    @include mixins.media("desktop") {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
 
     .project-card {
       background-color: rgba(58, 33, 117, 0.7);
@@ -381,8 +364,19 @@ footer {
       position: relative;
       padding-top: 2.7rem;
 
-      width: 50%;
+      // Fix padding en móvil
+      @media (max-width: 425px) {
+          padding-top: 1rem; 
+      }
+
+      width: 100%; 
+      max-width: 350px; 
       margin: 0 auto;
+      
+      @include mixins.media("desktop") {
+          width: 50%; 
+          max-width: none; 
+      }
 
       .project-title-band {
         position: absolute;
@@ -390,17 +384,16 @@ footer {
         left: 0;
         width: 100%;
         height: auto;
-
         background-color: variables.$color-amarillo;
         color: variables.$color-rosa;
         font-family: variables.$font-family-h3;
-        font-size: variables.$font-size-h3-movil;
+        font-size: 1.2rem; 
         border-bottom: 0.2rem solid variables.$color-morado;
-
         display: flex;
         justify-content: center;
         align-items: center;
-
+        
+        @include mixins.media("tablet") { font-size: variables.$font-size-h3-movil; }
 
         -webkit-text-stroke: 0.2rem variables.$color-morado;
         paint-order: stroke fill;
@@ -410,10 +403,8 @@ footer {
           left: 0.5rem;
           top: 50%;
           transform: translateY(-50%);
-
-          height: 1.5rem;
+          height: 1.2rem; 
           width: auto;
-
           margin: 0;
         }
       }
@@ -422,11 +413,11 @@ footer {
         max-width: 100%;
         height: auto;
         display: block;
+        margin: 0 auto;
       }
     }
   }
 
-  // Dots
   .carousel-dots {
     display: flex;
     justify-content: center;
@@ -434,17 +425,15 @@ footer {
     margin-top: 1rem;
     position: relative;
     z-index: 10;
+    
     .dot {
       height: 20px !important;
       width: 20px !important;
-
       background-color: transparent;
       border-radius: 0;
-
       background-image: url("../assets/tabler_point.png");
       background-size: contain;
       background-repeat: no-repeat;
-
       display: inline-block;
       cursor: pointer;
 
@@ -455,6 +444,7 @@ footer {
   }
 }
 
+// Ajustes finales Grid Carrusel
 #proyectos-carrusel .project-cards-container {
   display: flex;
   justify-content: center;

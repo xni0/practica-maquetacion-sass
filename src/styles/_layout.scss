@@ -246,6 +246,7 @@ footer {
       display: inline-block;
       transition: background-color 0.3s ease;
       cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 
       border: 3px solid variables.$color-morado;
       &:hover {

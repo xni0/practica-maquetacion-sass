@@ -1,5 +1,4 @@
 import './styles/main.scss';
-
 // src/main.js
 
 document.addEventListener('DOMContentLoaded', () => {

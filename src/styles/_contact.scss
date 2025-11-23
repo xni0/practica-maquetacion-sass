@@ -1,0 +1,366 @@
+@use "variables";
+@use "mixins";
+
+// Estilos específicos para el wrapper de contacto
+.contact-wrapper {
+    background-color: rgba(variables.$color-lavanda, 0.5);
+    border: 0.2rem solid variables.$color-amarillo;
+    padding: variables.$spacing-unit * 3;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    max-width: 1000px;
+    width: 90%;
+    margin: (variables.$spacing-unit * 3) auto; 
+    position: relative;
+    z-index: 10;
+}
+
+.contact-content {
+    width: 100%;
+    padding-left: 1.25rem; 
+    padding-right: 1.25rem; 
+    margin-top: -1.25rem;  
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between;
+    align-items: center; 
+}
+
+// TÍTULO (Columna Izquierda)
+.contact-title-area {
+    width: 55%; 
+    text-align: left;
+    margin-bottom: variables.$spacing-unit; 
+
+    .heading-h1 {
+        color: variables.$color-rosa;
+        font-family: variables.$font-family-h1;
+        font-size: variables.$font-size-h1 ; 
+        line-height: variables.$line-height-h1;
+        margin: 0;
+        padding-left: 20px;
+        
+        text-shadow: 
+            3px 0 0 variables.$color-morado, -3px 0 0 variables.$color-morado,
+            0 3px 0 variables.$color-morado, 0 -3px 0 variables.$color-morado,
+            3px 3px 0 variables.$color-morado, -3px -3px 0 variables.$color-morado,
+            3px -3px 0 variables.$color-morado, -3px 3px 0 variables.$color-morado,
+            4px 4px 6px rgba(0, 0, 0, 0.4);
+    }
+}
+
+//  SUBTÍTULO E ICONO (Columna Derecha) 
+.contact-subtitle-area {
+    width: 45%; 
+    display: flex; 
+    justify-content: flex-end; 
+    align-items: center;
+    margin-bottom: variables.$spacing-unit;
+    
+
+    .contact-intro {
+        color: variables.$color-blanco;
+        font-family: variables.$font-family-h3; 
+        font-size: variables.$font-size-h3 * 1.2; 
+        
+        text-align: left; 
+        margin: 0;
+        width: fit-content; 
+        line-height: 1.2; 
+        
+        position: relative; 
+        padding-right: 1.35rem;
+        
+        text-shadow: 
+            3px 0 0 variables.$color-morado, -3px 0 0 variables.$color-morado,
+            0 3px 0 variables.$color-morado, 0 -3px 0 variables.$color-morado,
+            3px 3px 0 variables.$color-morado, -3px -3px 0 variables.$color-morado,
+            3px -3px 0 variables.$color-morado, -3px 3px 0 variables.$color-morado,
+            4px 4px 6px rgba(0, 0, 0, 0.4);
+
+        .linea-texto {
+            display: block; 
+            width: 100%;
+        }
+
+        .texto-destacado {
+            color: variables.$color-amarillo;
+        }
+
+        .inline-icon-pc {
+            position: absolute; 
+            right: 3rem; 
+            bottom: 0.8rem; 
+            height: variables.$icon-size-icon-carrusel; 
+            image-rendering: pixelated;
+        }
+    }
+}
+
+//  FORMULARIO PIXEL ART 
+.contact-form-area {
+    width: 100%;
+    margin-top: variables.$spacing-unit * 4;
+}
+
+.pixel-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem; 
+
+    .form-group {
+        display: flex;
+        align-items: center; 
+        
+        // Centrado del grupo
+        justify-content: center; 
+        gap: 1rem; 
+        
+        position: relative;
+
+        label {
+            color: variables.$color-blanco;
+            font-family: variables.$font-family-parrafo;
+            font-size: 1.4rem;
+            text-align: right;
+            
+            width: 35%; 
+            white-space: nowrap; 
+            text-shadow: 2px 2px 0 variables.$color-morado;
+            
+            &.align-top {
+                align-self: flex-start; 
+                margin-top: 0.8rem;
+            }
+        }
+
+        input, textarea {
+            width: 50%; 
+            
+            // Tus colores solicitados
+            background-color: rgba(variables.$color-rosa, 0.5); 
+            border: 3px solid transparent; 
+            border-bottom: 3px solid variables.$color-morado; 
+            border: 3px solid variables.$color-morado; 
+            
+            color: variables.$color-morado; 
+            font-family: variables.$font-family-parrafo;
+            font-size: variables.$font-size-parrafo; 
+            padding: 0.5rem variables.$spacing-unit;
+            outline: none;
+
+            &::placeholder {
+                color: variables.$color-rosa;
+                font-size: 1rem;
+                text-align: center;
+            }
+
+            &:focus {
+                background-color: rgba(165, 118, 184, 0.8);
+                border: 3px solid variables.$color-rosa; 
+            }
+        }
+
+        textarea {
+            height: 120px;
+            resize: none;
+        }
+    }
+
+    // FORM ACTIONS (AQUI ESTÁ EL CAMBIO VERTICAL) 
+    .form-actions {
+        display: flex;
+        flex-direction: column; // Cambio a columna: Newsletter arriba, Botón abajo
+        align-items: center;
+        gap: 1.5rem; 
+        margin-top: variables.$spacing-unit;
+        width: 100%;
+        
+        // Fila del Newsletter (Replica la estructura de los inputs de arriba)
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%; // Ocupa todo el ancho
+            gap: 1rem; // Mismo gap que los inputs
+            
+            .checkbox-label {
+                width: 35%; // Mismo ancho que label
+                text-align: left; // Alineado a la izquierda como pediste en el último código
+                padding-right: 0; // Ajuste fino
+                
+                color: variables.$color-blanco;
+                font-family: variables.$font-family-parrafo;
+                text-shadow: 2px 2px 0 #3a2175; // Mantenemos el color hardcodeado que pasaste
+                font-size: 1.4rem;
+                line-height: 1.2;
+                white-space: normal;
+
+                // --- NUEVO: SOPORTE PARA TEXTO AMARILLO Y SALTOS DE LÍNEA ---
+                .linea-texto {
+                    display: block; // Fuerza el salto de línea en cada span
+                    width: 100%;
+                }
+                .texto-destacado {
+                    color: variables.$color-amarillo; // Pinta de amarillo "mi newsletter"
+                }
+            }
+
+            .custom-checkbox-wrapper {
+                width: 50%; // Mismo ancho que input
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                text-align: left;
+
+                input[type="checkbox"] {
+                    appearance: none; 
+                    -webkit-appearance: none;
+                    width: 1.5rem;
+                    height: 1.5rem;
+                    background-color: rgba(245, 154, 195, 0.5);
+                    border: 2px solid variables.$color-morado;
+                
+                    cursor: pointer;
+                    display: grid;
+                    place-content: center;
+                    flex-shrink: 0;
+
+                    &::before {
+                        content: "";
+                        width: 0.8rem;
+                        height: 0.8rem;
+                        background-color: variables.$color-rosa;
+                        transform: scale(0);
+                        transition: 0.1s transform ease-in-out;
+                        box-shadow: 1px 1px 0 rgba(0,0,0,0.5);
+                    }
+
+                    &:checked::before {
+                        transform: scale(1);
+                    }
+                }
+
+                .check-text {
+                    color: variables.$color-blanco;
+                    font-weight: bold;
+                    cursor: pointer;
+                    font-size: 1.3rem;
+                    text-shadow: 2px 2px 0 #3a2175;
+                }
+            }
+        }
+
+        
+        .btn-submit {
+            width: 50%; // Mismo ancho que los inputs
+            
+            // Truco para alinear el botón debajo de los inputs (y no centrado en la página)
+            // Empujamos el botón a la derecha sumando el ancho del label (35%) + el gap (1rem)
+            margin-left: calc(35% + 1rem);
+            margin-right: 0;
+            
+            background-color: variables.$color-amarillo;
+            color: variables.$color-morado;
+            font-family: variables.$font-family-boton; 
+            font-size: 1.5rem; 
+            text-transform: uppercase;
+            font-weight: 700;
+            padding: 0.5rem 0; 
+            border: 3px solid variables.$color-morado; 
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.1s;
+            
+            &:hover {
+                background-color: variables.$color-rosa;
+                transform: translate(-2px, -2px);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+            
+            &:active {
+                transform: translate(2px, 2px);
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+        }
+    }
+}
+
+// RESPONSIVE (Móvil) 
+@media (max-width: 768px) {
+    .contact-wrapper {
+        padding: 1.5rem;
+    }
+    
+    .contact-title-area, .contact-subtitle-area {
+        width: 100%;
+        text-align: center;
+        
+        .heading-h1 { 
+            font-size: variables.$font-size-h1-movil; 
+            line-height: variables.$line-height-h1-movil;
+        }
+        .contact-intro { 
+            max-width: 100%; 
+            font-size: variables.$font-size-h3-movil; 
+            width: 100%; 
+            text-align: center;
+            padding-right: 0; 
+            
+            .inline-icon-pc {
+                position: static; 
+                display: inline-block;
+                margin-left: 0.5rem;
+                vertical-align: middle;
+            }
+        }
+    }
+
+    .pixel-form {
+        .form-group {
+            flex-direction: column; 
+            align-items: flex-start;
+            gap: 0.5rem; 
+            
+            label {
+                width: 100%;
+                text-align: left;
+                margin-bottom: 0.2rem;
+                font-size: variables.$font-size-parrafo-form-movil;
+                white-space: normal; 
+            }
+            input, textarea {
+                width: 100%;
+            }
+        }
+
+        .form-actions {
+            gap: 1.5rem;
+
+            .checkbox-group {
+                flex-direction: column;
+                align-items: flex-start; 
+                width: 100%;
+                gap: 0.5rem;
+                
+                .checkbox-label { 
+                    width: 100%; 
+                    text-align: left; 
+                    padding-right: 0;
+                    margin-bottom: 0.5rem;
+                }
+                .custom-checkbox-wrapper { width: 100%; }
+            }
+            
+            .btn-submit {
+                width: 100%; 
+                height: variables.$button-size-boton-movil;
+                margin-left: 0; 
+                display: flex; 
+                align-items: center; 
+                justify-content: center;
+            }
+        }
+    }
+}

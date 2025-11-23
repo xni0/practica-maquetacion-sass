@@ -1,1 +1,40 @@
 @use "globals" as *;
+@use "variables";
+
+.main-footer {
+    background-color: variables.$color-amarillo; 
+    // Borde superior grueso morado como en el diseño
+    border-top: 0.22rem solid variables.$color-morado; 
+    
+    padding: variables.$spacing-unit * 1 0; // Espaciado vertical
+    margin-top: variables.$spacing-unit; // Separación del contenido principal
+    
+    .social-links {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1.7rem; // Espacio entre iconos
+        
+        a {
+            display: inline-block;
+            transition: transform 0.2s ease;
+            text-decoration: none; // Quitar subrayado de enlaces
+            
+            &:hover {
+                transform: translateY(-3px); // Efecto de "salto" al pasar el ratón
+            }
+            
+            .icon {
+                height: 2rem; // Tamaño de los iconos (ajusta según necesites)
+                width: auto;
+                display: block;
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: crisp-edges;
+                image-rendering: pixelated; 
+                
+                
+                 filter: brightness(0) saturate(100%) invert(16%) sepia(32%) saturate(3873%) hue-rotate(253deg) brightness(93%) contrast(96%);
+            }
+        }
+    }
+}
